@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互联网大厂职级对照参考</title>
+    <style>
+        :root {
+            --t1: #F59E0B; --t1-bg: #FFFBEB; --t1-border: #FDE68A; --t1-dark: #D97706;
+            --t2: #3B82F6; --t2-bg: #EFF6FF; --t2-border: #BFDBFE; --t2-dark: #2563EB;
+            --t3: #10B981; --t3-bg: #ECFDF5; --t3-border: #A7F3D0; --t3-dark: #059669;
+            --t4: #8B5CF6; --t4-bg: #F5F3FF; --t4-border: #DDD6FE; --t4-dark: #7C3AED;
+            --bg: #F8FAFC; --text: #1E293B; --text2: #64748B; --text3: #94A3B8;
+            --border: #E2E8F0; --card: #FFFFFF; --accent: #6366F1;
+            --lv1: #DBEAFE; --lv2: #BBF7D0; --lv3: #FDE68A; --lv4: #FECACA; --lv5: #E9D5FF; --lv6: #FBCFE8;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08); --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12); --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+        a { color:var(--accent); text-decoration:none; }
+
+        /* NAV */
+        .nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 24px; }
+        .nav-inner { max-width:1400px; margin:0 auto; display:flex; align-items:center; gap:8px; height:56px; overflow-x:auto; }
+        .nav-brand { font-weight:700; font-size:16px; margin-right:16px; white-space:nowrap; color:var(--accent); }
+        .nav-link { padding:6px 14px; border-radius:8px; font-size:14px; font-weight:500; color:var(--text2); cursor:pointer; white-space:nowrap; transition:all .2s; border:none; background:none; }
+        .nav-link:hover { background:#F1F5F9; color:var(--text); }
+        .nav-link.active { background:var(--accent); color:#fff; }
+
+        /* HERO */
+        .hero { max-width:1400px; margin:0 auto; padding:48px 24px 32px; }
+        .hero h1 { font-size:32px; font-weight:800; background:linear-gradient(135deg,var(--accent),#EC4899); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero p { color:var(--text2); font-size:16px; margin-top:8px; max-width:680px; }
+        .hero-badges { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+        .badge { display:inline-flex; align-items:center; gap:4px; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; }
+        .badge-t1 { background:var(--t1-bg); color:var(--t1-dark); border:1px solid var(--t1-border); }
+        .badge-t2 { background:var(--t2-bg); color:var(--t2-dark); border:1px solid var(--t2-border); }
+        .badge-t3 { background:var(--t3-bg); color:var(--t3-dark); border:1px solid var(--t3-border); }
+        .badge-t4 { background:var(--t4-bg); color:var(--t4-dark); border:1px solid var(--t4-border); }
+
+        /* SECTIONS */
+        .section { max-width:1400px; margin:0 auto; padding:24px 24px 48px; }
+        .section-title { font-size:24px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+        .section-title .icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; }
+        .section-desc { color:var(--text2); margin-bottom:24px; font-size:14px; }
+
+        /* TIER CARDS */
+        .tier-group { margin-bottom:32px; }
+        .tier-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+        .tier-label { font-size:18px; font-weight:700; padding:4px 16px; border-radius:8px; color:#fff; }
+        .tier-label-t1 { background:linear-gradient(135deg,var(--t1),var(--t1-dark)); }
+        .tier-label-t2 { background:linear-gradient(135deg,var(--t2),var(--t2-dark)); }
+        .tier-label-t3 { background:linear-gradient(135deg,var(--t3),var(--t3-dark)); }
+        .tier-label-t4 { background:linear-gradient(135deg,var(--t4),var(--t4-dark)); }
+        .tier-hint { font-size:13px; color:var(--text3); }
+        .tier-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+        .tier-card { background:var(--card); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); border:1px solid var(--border); transition:all .2s; cursor:default; }
+        .tier-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+        .tier-card .company-name { font-size:16px; font-weight:700; }
+        .tier-card .company-en { font-size:12px; color:var(--text3); }
+        .tier-card .company-desc { font-size:12px; color:var(--text2); margin-top:6px; line-height:1.5; }
+        .tier-card-t1 { border-left:3px solid var(--t1); }
+        .tier-card-t2 { border-left:3px solid var(--t2); }
+        .tier-card-t3 { border-left:3px solid var(--t3); }
+        .tier-card-ai { border-left:3px solid #0EA5E9; }
+        .badge-ai { background:#E0F2FE; color:#0369A1; border:1px solid #BAE6FD; }
+
+        /* BUSINESS LINES */
+        .biz-company { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); margin-bottom:16px; overflow:hidden; }
+        .biz-header { padding:16px 20px; cursor:pointer; display:flex; align-items:center; justify-content:space-between; user-select:none; transition:background .2s; }
+        .biz-header:hover { background:#F8FAFC; }
+        .biz-header h3 { font-size:16px; font-weight:700; display:flex; align-items:center; gap:8px; }
+        .biz-header .arrow { transition:transform .3s; font-size:12px; color:var(--text3); }
+        .biz-header .arrow.open { transform:rotate(180deg); }
+        .biz-body { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+        .biz-body.open { max-height:800px; }
+        .biz-body-inner { padding:0 20px 20px; }
+        .biz-tier { margin-bottom:12px; }
+        .biz-tier-label { display:inline-block; padding:2px 10px; border-radius:6px; font-size:12px; font-weight:700; margin-bottom:6px; }
+        .biz-s { background:#FEF3C7; color:#92400E; }
+        .biz-a { background:#DBEAFE; color:#1E40AF; }
+        .biz-b { background:#F3F4F6; color:#4B5563; }
+        .biz-items { display:flex; flex-wrap:wrap; gap:6px; }
+        .biz-item { padding:4px 12px; border-radius:6px; font-size:13px; background:#F8FAFC; border:1px solid var(--border); }
+
+        /* LEVEL TABLE */
+        .table-wrap { overflow-x:auto; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); background:var(--card); }
+        .level-table { width:100%; border-collapse:collapse; font-size:13px; min-width:1200px; }
+        .level-table th { background:#F1F5F9; padding:10px 12px; text-align:center; font-weight:700; font-size:12px; border-bottom:2px solid var(--border); white-space:nowrap; position:sticky; top:0; z-index:2; }
+        .level-table th:first-child { position:sticky; left:0; z-index:3; background:#F1F5F9; }
+        .level-table td { padding:8px 12px; text-align:center; border-bottom:1px solid #F1F5F9; white-space:nowrap; }
+        .level-table td:first-child { position:sticky; left:0; background:var(--card); z-index:1; font-weight:700; text-align:left; }
+        .level-table tr:hover td { background:#F8FAFC; }
+        .level-table tr:hover td:first-child { background:#F1F5F9; }
+        .level-table .lv-junior td { border-left:3px solid #93C5FD; }
+        .level-table .lv-junior td:first-child { border-left:3px solid #93C5FD; color:#2563EB; }
+        .level-table .lv-mid td:first-child { border-left:3px solid #86EFAC; color:#16A34A; }
+        .level-table .lv-senior td:first-child { border-left:3px solid #FDE047; color:#CA8A04; }
+        .level-table .lv-staff td:first-child { border-left:3px solid #FCA5A5; color:#DC2626; }
+        .level-table .lv-expert td:first-child { border-left:3px solid #C4B5FD; color:#7C3AED; }
+        .level-table .lv-dir td:first-child { border-left:3px solid #F9A8D4; color:#DB2777; }
+        .cell-new { font-weight:700; color:var(--text); }
+        .cell-old { font-size:11px; color:var(--text3); display:block; }
+        .cell-na { color:#D1D5DB; }
+        .cell-highlight { background:#FEF9C3 !important; font-weight:700; }
+        .reform-badge { display:inline-block; padding:1px 6px; border-radius:4px; font-size:10px; font-weight:600; background:#FEE2E2; color:#991B1B; margin-left:4px; vertical-align:middle; }
+
+        /* MATCH SECTION */
+        .match-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:16px; }
+        .match-card { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); padding:20px; }
+        .match-card h3 { font-size:15px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+        .speed-bar { display:flex; gap:2px; margin-bottom:16px; }
+        .speed-seg { height:6px; border-radius:3px; flex:1; }
+        .speed-fast { background:#22C55E; }
+        .speed-normal { background:#FBBF24; }
+        .speed-slow { background:#EF4444; }
+        .match-table { width:100%; border-collapse:collapse; font-size:13px; }
+        .match-table th { text-align:left; padding:6px 8px; font-size:12px; color:var(--text2); border-bottom:1px solid var(--border); }
+        .match-table td { padding:6px 8px; border-bottom:1px solid #F1F5F9; }
+        .tag-fast { display:inline-block; padding:1px 8px; border-radius:4px; font-size:11px; font-weight:600; background:#DCFCE7; color:#166534; }
+        .tag-normal { display:inline-block; padding:1px 8px; border-radius:4px; font-size:11px; font-weight:600; background:#FEF9C3; color:#854D0E; }
+        .tag-slow { display:inline-block; padding:1px 8px; border-radius:4px; font-size:11px; font-weight:600; background:#FEE2E2; color:#991B1B; }
+
+        /* SCORE SECTION */
+        .score-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+        .score-card { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); padding:20px; }
+        .score-card h3 { font-size:15px; font-weight:700; margin-bottom:4px; }
+        .score-card .score-sub { font-size:12px; color:var(--text3); margin-bottom:12px; }
+        .score-row { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #F1F5F9; font-size:13px; }
+        .score-row:last-child { border-bottom:none; }
+        .score-pts { font-weight:700; min-width:50px; text-align:right; }
+        .score-total { background:linear-gradient(135deg,var(--accent),#EC4899); color:#fff; border-radius:8px; padding:12px 16px; margin-top:16px; display:flex; align-items:center; justify-content:space-between; font-weight:700; }
+
+        /* LEGEND */
+        .legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; padding:12px 16px; background:#F8FAFC; border-radius:8px; border:1px solid var(--border); }
+        .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text2); }
+        .legend-dot { width:12px; height:12px; border-radius:3px; }
+
+        /* TOOLTIP */
+        .tip { position:relative; cursor:help; border-bottom:1px dashed var(--text3); }
+        .tip:hover::after { content:attr(data-tip); position:absolute; bottom:100%; left:50%; transform:translateX(-50%); padding:6px 10px; background:#1E293B; color:#fff; font-size:11px; border-radius:6px; white-space:nowrap; z-index:10; margin-bottom:4px; }
+
+        /* TABS */
+        .tabs { display:flex; gap:4px; margin-bottom:20px; flex-wrap:wrap; }
+        .tab { padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--border); background:var(--card); color:var(--text2); transition:all .2s; }
+        .tab:hover { border-color:var(--accent); color:var(--accent); }
+        .tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
+
+        /* RESPONSIVE */
+        @media (max-width:768px) {
+            .hero h1 { font-size:24px; }
+            .tier-cards { grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+            .match-grid, .score-grid { grid-template-columns:1fr; }
+            .nav-inner { gap:4px; }
+        }
+
+        /* PRINT */
+        @media print {
+            .nav { position:static; }
+            .biz-body { max-height:none !important; }
+            .tier-card:hover { transform:none; }
+        }
+
+        /* UTILS */
+        .mt-8 { margin-top:8px; } .mt-16 { margin-top:16px; } .mt-24 { margin-top:24px; }
+        .text-sm { font-size:13px; } .text-xs { font-size:12px; }
+        .text-muted { color:var(--text2); }
+        .flex { display:flex; } .items-center { align-items:center; } .gap-8 { gap:8px; }
+        .note-box { background:#FFFBEB; border:1px solid #FDE68A; border-radius:8px; padding:12px 16px; font-size:13px; color:#92400E; margin-bottom:16px; }
+        .info-box { background:var(--t2-bg); border:1px solid var(--t2-border); border-radius:8px; padding:12px 16px; font-size:13px; color:#1E40AF; margin-bottom:16px; }
+    </style>
+</head>
+<body>
+
+<!-- ======================== NAV ======================== -->
+<nav class="nav">
+    <div class="nav-inner">
+        <span class="nav-brand">职级参考</span>
+        <button class="nav-link active" onclick="scrollToSection('tiers')">公司梯队</button>
+        <button class="nav-link" onclick="scrollToSection('business')">业务线优先级</button>
+        <button class="nav-link" onclick="scrollToSection('levels')">职级对照表</button>
+        <button class="nav-link" onclick="scrollToSection('match')">年限匹配评估</button>
+    </div>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<div class="hero">
+    <h1>互联网大厂职级对照参考</h1>
+    <p>公司梯队分级、业务线优先级、全公司职级对照表、年限匹配评估</p>
+    <div class="hero-badges">
+        <span class="badge badge-t1">T1 顶级大厂</span>
+        <span class="badge badge-t2">T2 一线大厂</span>
+        <span class="badge badge-t3">T3 知名公司</span>
+        <span class="badge badge-t4">T4 成长型公司</span>
+        <span class="badge badge-ai">AI 大模型公司</span>
+    </div>
+</div>
+
+<!-- ======================== SECTION 1: COMPANY TIERS ======================== -->
+<div class="section" id="tiers">
+    <div class="section-title">
+        <span class="icon" style="background:var(--t1-bg);color:var(--t1);">&#9733;</span>
+        公司梯队分级
+    </div>
+    <div class="section-desc">根据公司规模、技术影响力、行业地位、人才密度综合评估。大厂经历是能力的间接证明，不易伪造。</div>
+
+    <!-- T1 -->
+    <div class="tier-group">
+        <div class="tier-header">
+            <span class="tier-label tier-label-t1">T1 顶级大厂</span>
+            <span class="tier-hint">技术体系成熟、人才密度极高、面试筛选严格、职级含金量最高</span>
+        </div>
+        <div class="tier-cards">
+            <div class="tier-card tier-card-t1">
+                <div class="company-name">字节跳动</div>
+                <div class="company-en">ByteDance</div>
+                <div class="company-desc">短视频+信息流巨头，抖音/TikTok母公司，高薪高强度，技术驱动</div>
+            </div>
+            <div class="tier-card tier-card-t1">
+                <div class="company-name">阿里巴巴</div>
+                <div class="company-en">Alibaba Group</div>
+                <div class="company-desc">电商+云计算巨头，淘宝/天猫/阿里云，体系最成熟，2024年职级改革</div>
+            </div>
+            <div class="tier-card tier-card-t1">
+                <div class="company-name">腾讯</div>
+                <div class="company-en">Tencent</div>
+                <div class="company-desc">社交+游戏巨头，微信/QQ/王者荣耀，2019年职级改革，福利优厚</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- T2 -->
+    <div class="tier-group">
+        <div class="tier-header">
+            <span class="tier-label tier-label-t2">T2 一线大厂</span>
+            <span class="tier-hint">行业头部、技术实力强、品牌认可度高、部分业务线可对标T1</span>
+        </div>
+        <div class="tier-cards">
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">华为</div>
+                <div class="company-en">Huawei</div>
+                <div class="company-desc">通信+终端巨头，鸿蒙/5G/芯片，狼性文化，技术底蕴深厚</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">美团</div>
+                <div class="company-en">Meituan</div>
+                <div class="company-desc">本地生活巨头，外卖/到店/酒旅，工程能力强</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">拼多多</div>
+                <div class="company-en">PDD Holdings</div>
+                <div class="company-desc">电商黑马，Temu海外扩张，市值超阿里，薪资极高</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">快手</div>
+                <div class="company-en">Kuaishou</div>
+                <div class="company-desc">短视频/直播，与抖音双雄并立，电商增长快</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">京东</div>
+                <div class="company-en">JD.com</div>
+                <div class="company-desc">自营电商+物流，供应链技术强，体系稳健</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">百度</div>
+                <div class="company-en">Baidu</div>
+                <div class="company-desc">搜索+AI巨头，文心大模型/Apollo自动驾驶，AI人才密度高</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">小米</div>
+                <div class="company-en">Xiaomi</div>
+                <div class="company-desc">智能硬件+汽车，IoT生态链，造车新势力</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">网易</div>
+                <div class="company-en">NetEase</div>
+                <div class="company-desc">游戏+教育+音乐，游戏研发实力强，有道/云音乐</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">蚂蚁集团</div>
+                <div class="company-en">Ant Group</div>
+                <div class="company-desc">金融科技巨头，支付宝母公司，技术体系源自阿里</div>
+            </div>
+            <div class="tier-card tier-card-t2">
+                <div class="company-name">小红书</div>
+                <div class="company-en">Xiaohongshu</div>
+                <div class="company-desc">内容社区+电商，年轻用户群体，增长势头强劲</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- T3 -->
+    <div class="tier-group">
+        <div class="tier-header">
+            <span class="tier-label tier-label-t3">T3 知名公司</span>
+            <span class="tier-hint">行业知名、有特色业务、技术团队有一定规模</span>
+        </div>
+        <div class="tier-cards">
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">滴滴</div>
+                <div class="company-en">DiDi</div>
+                <div class="company-desc">出行平台，地图/调度算法强</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">哔哩哔哩</div>
+                <div class="company-en">Bilibili</div>
+                <div class="company-desc">视频社区，年轻化，游戏/动漫</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">携程</div>
+                <div class="company-en">Trip.com</div>
+                <div class="company-desc">在线旅游OTA龙头，国际化</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">OPPO / vivo</div>
+                <div class="company-en">OPPO / vivo</div>
+                <div class="company-desc">手机厂商，软件/AI/影像技术</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">蔚来 / 理想 / 小鹏</div>
+                <div class="company-en">NIO / Li Auto / XPeng</div>
+                <div class="company-desc">新能源汽车三强，智驾/车机研发</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">得物</div>
+                <div class="company-en">Dewu (Poizon)</div>
+                <div class="company-desc">潮流电商，鉴别+社区，薪资较高</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">微众银行</div>
+                <div class="company-en">WeBank</div>
+                <div class="company-desc">腾讯系金融科技，区块链/AI</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">荣耀</div>
+                <div class="company-en">Honor</div>
+                <div class="company-desc">原华为子品牌，独立后快速成长</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">商汤 / 旷视</div>
+                <div class="company-en">SenseTime / Megvii</div>
+                <div class="company-desc">AI四小龙代表，计算机视觉/大模型</div>
+            </div>
+            <div class="tier-card tier-card-t3">
+                <div class="company-name">贝壳</div>
+                <div class="company-en">KE Holdings</div>
+                <div class="company-desc">房产科技，数据+交易平台</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- T4 -->
+    <div class="tier-group">
+        <div class="tier-header">
+            <span class="tier-label tier-label-t4">T4 成长型公司</span>
+            <span class="tier-hint">有一定知名度、细分领域头部、但规模或影响力有限</span>
+        </div>
+        <div class="tier-cards">
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">哈啰</div>
+                <div class="company-en">Hello Inc.</div>
+                <div class="company-desc">出行+本地生活</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">货拉拉</div>
+                <div class="company-en">Lalamove</div>
+                <div class="company-desc">同城货运平台</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">Boss直聘</div>
+                <div class="company-en">BOSS Zhipin</div>
+                <div class="company-desc">招聘平台</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">知乎</div>
+                <div class="company-en">Zhihu</div>
+                <div class="company-desc">知识问答社区</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">喜马拉雅</div>
+                <div class="company-en">Ximalaya</div>
+                <div class="company-desc">音频内容平台</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">去哪儿</div>
+                <div class="company-en">Qunar</div>
+                <div class="company-desc">旅游搜索，携程系</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">58同城 / 赶集</div>
+                <div class="company-en">58.com</div>
+                <div class="company-desc">生活服务信息平台</div>
+            </div>
+            <div class="tier-card tier-card-t4">
+                <div class="company-name">Shopee 中国</div>
+                <div class="company-en">Shopee CN R&D</div>
+                <div class="company-desc">跨境电商研发中心</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI 大模型公司 -->
+    <div class="tier-group">
+        <div class="tier-header">
+            <span class="tier-label" style="background:linear-gradient(135deg,#0EA5E9,#6366F1);">AI 大模型公司</span>
+            <span class="tier-hint">"AI六小虎"及相关大模型创业公司 — 职级普遍扁平、不公开，按影响力/估值分梯队</span>
+        </div>
+
+        <div style="font-size:13px;font-weight:700;color:#0369A1;margin-bottom:10px;">第一梯队 — 已上市 / 全球级影响力</div>
+        <div class="tier-cards" style="margin-bottom:20px;">
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">智谱AI</div>
+                <div class="company-en">Zhipu AI</div>
+                <div class="company-desc">清华系，港股上市市值2500亿+，GLM大模型，AI六小虎之首</div>
+            </div>
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">DeepSeek</div>
+                <div class="company-en">深度求索（幻方量化）</div>
+                <div class="company-desc">全球现象级开源大模型，~200人精英团队，百万年薪招聘</div>
+            </div>
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">月之暗面</div>
+                <div class="company-en">Moonshot AI（Kimi）</div>
+                <div class="company-desc">Kimi长文本AI助手，C端用户量大，估值~40亿美元</div>
+            </div>
+        </div>
+
+        <div style="font-size:13px;font-weight:700;color:#0369A1;margin-bottom:10px;">第二梯队 — 独角兽 / 高速成长</div>
+        <div class="tier-cards">
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">百川智能</div>
+                <div class="company-en">Baichuan AI</div>
+                <div class="company-desc">王小川创办，AI六小虎，大模型+搜索</div>
+            </div>
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">阶跃星辰</div>
+                <div class="company-en">StepFun</div>
+                <div class="company-desc">姜大昕创办，AI六小虎，50亿融资超级独角兽</div>
+            </div>
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">零一万物</div>
+                <div class="company-en">01.AI</div>
+                <div class="company-desc">李开复创办，AI六小虎，Yi系列大模型</div>
+            </div>
+            <div class="tier-card tier-card-ai">
+                <div class="company-name">面壁智能</div>
+                <div class="company-en">ModelBest</div>
+                <div class="company-desc">清华系，端侧大模型，开源MiniCPM系列</div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top:16px;">
+            <strong>注意：</strong>大厂 AI 团队（字节 Seed/豆包、百度文心、阿里通义、腾讯混元）的候选人按所属大厂梯队评估，不在此列。
+            AI 创业公司普遍扁平化管理，无公开职级体系，评估时侧重技术影响力、论文产出和项目经历。
+        </div>
+    </div>
+</div>
+
+<!-- ======================== SECTION 2: BUSINESS LINE PRIORITY ======================== -->
+<div class="section" id="business">
+    <div class="section-title">
+        <span class="icon" style="background:var(--t2-bg);color:var(--t2);">&#9776;</span>
+        T1/T2 公司业务线优先级
+    </div>
+    <div class="section-desc">同一家公司内，核心业务线（S级）的经历含金量显著高于边缘业务线。筛选简历时，关注候选人所在的具体业务线。</div>
+
+    <div class="note-box">S级 = 核心现金流/战略级业务，人才密度最高 &nbsp;|&nbsp; A级 = 重要增长业务 &nbsp;|&nbsp; B级 = 支撑/探索业务</div>
+
+    <!-- T1 Companies -->
+    <h3 style="font-size:16px;font-weight:700;margin:20px 0 12px;color:var(--t1-dark);">T1 公司</h3>
+
+    <!-- 字节跳动 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t1">T1</span> 字节跳动 ByteDance</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级 核心现金流/战略级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">抖音（国内短视频+本地生活+电商）— 第一大现金流</span>
+                        <span class="biz-item">TikTok（海外短视频）— 全球化战略支柱</span>
+                        <span class="biz-item">Seed（大模型/AGI研究，AI Lab已并入）— CEO级战略投入</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级 核心平台/高增长</div>
+                    <div class="biz-items">
+                        <span class="biz-item">豆包（AI产品/大模型应用）— 主力AI产品</span>
+                        <span class="biz-item">火山引擎（云计算/AI服务）— 2025目标250亿+，万人团队</span>
+                        <span class="biz-item">Data（数据平台/数据中台）— EB级数据，横向支撑全业务线</span>
+                        <span class="biz-item">基础架构（存储/计算/网络/容器）— 百万级数据中心，千万级容器</span>
+                        <span class="biz-item">AML（应用机器学习/推荐算法）— 推荐+广告核心引擎</span>
+                        <span class="biz-item">抖音电商 / 巨量千川 — 高速增长</span>
+                        <span class="biz-item">剪映 / CapCut（创作工具）— 全球化产品</span>
+                        <span class="biz-item">飞书（企业协作）— 仍有5000人，但2024裁员20%，ROI承压</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级 成熟/细分/探索</div>
+                    <div class="biz-items">
+                        <span class="biz-item">今日头条（资讯）— 成熟产品，增长放缓</span>
+                        <span class="biz-item">番茄小说（网文）</span>
+                        <span class="biz-item">懂车帝（汽车）</span>
+                        <span class="biz-item">Flow（AI原生应用研发）</span>
+                        <span class="biz-item">安全与风控</span>
+                        <span class="biz-item">效率工程（DevOps/内部工具）</span>
+                        <span class="biz-item">Pico（VR/XR）— 大幅收缩</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 阿里巴巴 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t1">T1</span> 阿里巴巴 Alibaba（已从1+6+N收缩为四大业务）</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级 核心现金流/战略级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">淘天集团（淘宝/天猫/1688/闲鱼）— 占集团45%+营收</span>
+                        <span class="biz-item">阿里云智能集团 — 432亿/季，AI产品收入连续10季度三位数增长</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级 高增长/战略协同</div>
+                    <div class="biz-items">
+                        <span class="biz-item">国际数字商业（速卖通/Lazada/Trendyol/Miravia）— 33%增速，集团增长引擎</span>
+                        <span class="biz-item">即时零售/淘宝闪购（原饿了么）— 229亿/季，+60%增速，三年万亿目标</span>
+                        <span class="biz-item">高德地图 — DAU突破3.6亿，到店战略核心，首次盈利</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级 整合中/非核心/"其他"板块</div>
+                    <div class="biz-items">
+                        <span class="biz-item">菜鸟（物流）— 1012亿年营收，但盈利降78%，撤回上市，划入"其他"</span>
+                        <span class="biz-item">钉钉 — 订阅收入30亿+，"四小龙"之一，但非核心战略</span>
+                        <span class="biz-item">大文娱（优酷/阿里影业/大麦）</span>
+                        <span class="biz-item">达摩院/平头哥（研究/芯片）</span>
+                        <span class="biz-item">夸克（搜索/AI助手）— "四小龙"之一</span>
+                        <span class="biz-item">盒马（已出售/独立运营）</span>
+                        <span class="biz-item">飞猪（旅游）— 已并入电商群</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 腾讯 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t1">T1</span> 腾讯 Tencent（BG 架构）</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级 核心现金流/战略级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">WXG 微信事业群（微信/视频号/企业微信/微信支付）— 11亿用户，视频号时长+20%</span>
+                        <span class="biz-item">IEG 互动娱乐事业群（游戏/电竞）— 核心现金流</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级 战略升级/重要支柱</div>
+                    <div class="biz-items">
+                        <span class="biz-item">TEG 技术工程事业群（基础架构/AI大模型/安全）— 2025年成立大语言模型部+多模态部，战略地位大幅提升</span>
+                        <span class="biz-item">CSIG 云与智慧产业事业群（腾讯云/AI解决方案）</span>
+                        <span class="biz-item">CDG 企业发展事业群（腾讯广告/金融科技/战略投资）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级 内容/社交（成熟）</div>
+                    <div class="biz-items">
+                        <span class="biz-item">PCG 平台与内容事业群（QQ/腾讯视频/腾讯新闻）— 产品成熟，增长趋缓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- T2 Companies -->
+    <h3 style="font-size:16px;font-weight:700;margin:28px 0 12px;color:var(--t2-dark);">T2 公司</h3>
+
+    <!-- 华为 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 华为 Huawei</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级 核心</div>
+                    <div class="biz-items">
+                        <span class="biz-item">终端BG（手机/鸿蒙/Mate系列）</span>
+                        <span class="biz-item">ICT基础设施（运营商/5G/光网络）</span>
+                        <span class="biz-item">华为云</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级 重要</div>
+                    <div class="biz-items">
+                        <span class="biz-item">智能汽车解决方案BU（车BU/智驾）</span>
+                        <span class="biz-item">海思（芯片/半导体）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级 其他</div>
+                    <div class="biz-items">
+                        <span class="biz-item">数字能源</span>
+                        <span class="biz-item">企业业务（政企解决方案）</span>
+                        <span class="biz-item">机器视觉</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 美团 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 美团 Meituan</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">到店事业群（美团点评/餐饮/酒旅）</span>
+                        <span class="biz-item">到家事业群（外卖/配送）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">美团优选/买菜（社区团购）</span>
+                        <span class="biz-item">平台/搜索/广告</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">美团打车</span>
+                        <span class="biz-item">美团单车</span>
+                        <span class="biz-item">快驴进货</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 拼多多 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 拼多多 PDD Holdings</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">拼多多主站（电商）</span>
+                        <span class="biz-item">Temu（海外电商）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">多多买菜（社区团购）</span>
+                        <span class="biz-item">多多视频</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 快手 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 快手 Kuaishou</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">快手主站（短视频/直播）</span>
+                        <span class="biz-item">快手电商</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">商业化（广告）</span>
+                        <span class="biz-item">快手国际化（Kwai）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">快手游戏</span>
+                        <span class="biz-item">一甜相机</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 京东 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 京东 JD.com</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">京东零售（自营电商）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">京东物流</span>
+                        <span class="biz-item">京东科技（金融）</span>
+                        <span class="biz-item">京东健康</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">京东云</span>
+                        <span class="biz-item">京东产发</span>
+                        <span class="biz-item">京东工业</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 百度 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 百度 Baidu</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">搜索（核心现金流）</span>
+                        <span class="biz-item">AI/文心大模型</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">智能驾驶（Apollo/萝卜快跑）</span>
+                        <span class="biz-item">百度智能云</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">移动生态（百度App/好看视频）</span>
+                        <span class="biz-item">百度地图</span>
+                        <span class="biz-item">小度（智能硬件）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 小米 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 小米 Xiaomi</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">手机部（旗舰手机/影像）</span>
+                        <span class="biz-item">小米汽车（SU7）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">IoT与生活消费品（生态链）</span>
+                        <span class="biz-item">MIUI/HyperOS</span>
+                        <span class="biz-item">小米互联网（广告/游戏）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">小米金融</span>
+                        <span class="biz-item">有品电商</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 网易 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 网易 NetEase</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">游戏事业部（自研游戏/暴雪合作）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">有道（教育/AI翻译）</span>
+                        <span class="biz-item">云音乐</span>
+                        <span class="biz-item">严选（电商）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-b">B级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">传媒（新闻/邮箱）</span>
+                        <span class="biz-item">灵犀（办公）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 蚂蚁集团 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 蚂蚁集团 Ant Group</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">支付宝（支付/生活服务）</span>
+                        <span class="biz-item">蚂蚁数科（区块链/数据库）</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">网商银行</span>
+                        <span class="biz-item">蚂蚁国际（WorldFirst）</span>
+                        <span class="biz-item">芝麻信用</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 小红书 -->
+    <div class="biz-company">
+        <div class="biz-header" onclick="toggleBiz(this)">
+            <h3><span class="badge badge-t2">T2</span> 小红书 Xiaohongshu</h3>
+            <span class="arrow">&#9660;</span>
+        </div>
+        <div class="biz-body">
+            <div class="biz-body-inner">
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-s">S级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">社区（内容/推荐/搜索）</span>
+                        <span class="biz-item">电商</span>
+                    </div>
+                </div>
+                <div class="biz-tier">
+                    <div class="biz-tier-label biz-a">A级</div>
+                    <div class="biz-items">
+                        <span class="biz-item">商业化（广告）</span>
+                        <span class="biz-item">直播</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================== SECTION 3: LEVEL COMPARISON ======================== -->
+<div class="section" id="levels">
+    <div class="section-title">
+        <span class="icon" style="background:#FEF3C7;color:#D97706;">&#9744;</span>
+        全公司职级对照表
+    </div>
+    <div class="section-desc">技术序列（研发/工程师）为主，横向对比各公司等效职级。标注"改"的为近年改革后的新体系。</div>
+
+    <div class="info-box">
+        <strong>重要改革提示：</strong>
+        字节跳动 2025年将「X-Y」体系改为「L1-L10」 &nbsp;|&nbsp;
+        阿里巴巴 2024年取消P序列，改为14-28级（每3级≈1个旧P级），P9+改为组织任命 &nbsp;|&nbsp;
+        腾讯 2019年将「T1-T6」体系改为「4-17级」 &nbsp;|&nbsp;
+        小红书 取消R级，简化管理层
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab(this,'tab-all')">完整对照表</button>
+        <button class="tab" onclick="switchTab(this,'tab-t1')">T1 详细职级</button>
+        <button class="tab" onclick="switchTab(this,'tab-t2')">T2 详细职级</button>
+    </div>
+
+    <!-- TAB: 完整对照表 -->
+    <div class="tab-content active" id="tab-all">
+        <div class="table-wrap">
+            <table class="level-table">
+                <thead>
+                    <tr>
+                        <th style="min-width:100px;">统一层级</th>
+                        <th>典型年限</th>
+                        <th>字节跳动<span class="reform-badge">改</span></th>
+                        <th>阿里巴巴<span class="reform-badge">改</span></th>
+                        <th>腾讯<span class="reform-badge">改</span></th>
+                        <th>华为</th>
+                        <th>美团</th>
+                        <th>拼多多</th>
+                        <th>快手</th>
+                        <th>京东</th>
+                        <th>百度</th>
+                        <th>小米</th>
+                        <th>网易</th>
+                        <th>滴滴</th>
+                        <th>小红书<span class="reform-badge">改</span></th>
+                        <th>B站</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="lv-junior">
+                        <td>初级<br><span class="text-xs text-muted">校招入门</span></td>
+                        <td>0-2年</td>
+                        <td><span class="cell-new">L1</span><span class="cell-old">旧 1-1/1-2</span></td>
+                        <td><span class="cell-new">14-16级</span><span class="cell-old">旧 P4</span></td>
+                        <td><span class="cell-new">5-6级</span><span class="cell-old">旧 T2</span></td>
+                        <td>13级</td>
+                        <td>L5</td>
+                        <td>D7</td>
+                        <td>K3</td>
+                        <td>T3-T4</td>
+                        <td>T3</td>
+                        <td>13级</td>
+                        <td>P1</td>
+                        <td>D5</td>
+                        <td>R5</td>
+                        <td>T4-T5</td>
+                    </tr>
+                    <tr class="lv-mid">
+                        <td>中级<br><span class="text-xs text-muted">独立负责</span></td>
+                        <td>2-4年</td>
+                        <td><span class="cell-new">L2</span><span class="cell-old">旧 2-1</span></td>
+                        <td><span class="cell-new">17-19级</span><span class="cell-old">旧 P5</span></td>
+                        <td><span class="cell-new">7-8级</span><span class="cell-old">旧 T2.3-T3.1</span></td>
+                        <td>14级</td>
+                        <td>L6</td>
+                        <td>D8</td>
+                        <td>K4</td>
+                        <td>T5</td>
+                        <td>T4</td>
+                        <td>14级</td>
+                        <td>P2</td>
+                        <td>D6</td>
+                        <td>R6</td>
+                        <td>T6</td>
+                    </tr>
+                    <tr class="lv-senior">
+                        <td>高级<br><span class="text-xs text-muted">核心骨干</span></td>
+                        <td>4-7年</td>
+                        <td><span class="cell-new">L3</span><span class="cell-old">旧 2-2</span></td>
+                        <td><span class="cell-new">20-22级</span><span class="cell-old">旧 P6</span></td>
+                        <td><span class="cell-new">9级</span><span class="cell-old">旧 T3.2</span></td>
+                        <td>15级</td>
+                        <td>L7</td>
+                        <td>D9</td>
+                        <td>K5</td>
+                        <td>T6</td>
+                        <td>T5</td>
+                        <td>15级</td>
+                        <td>P3</td>
+                        <td>D7</td>
+                        <td>R7</td>
+                        <td>T7</td>
+                    </tr>
+                    <tr class="lv-staff">
+                        <td>资深<br><span class="text-xs text-muted">技术专家</span></td>
+                        <td>7-10年</td>
+                        <td><span class="cell-new">L4</span><span class="cell-old">旧 3-1</span></td>
+                        <td><span class="cell-new">23-25级</span><span class="cell-old">旧 P7</span></td>
+                        <td><span class="cell-new">10级</span><span class="cell-old">旧 T3.3</span></td>
+                        <td>16级</td>
+                        <td>L8</td>
+                        <td>D10</td>
+                        <td>K6</td>
+                        <td>T7</td>
+                        <td>T6</td>
+                        <td>16级</td>
+                        <td>P4</td>
+                        <td>D8</td>
+                        <td>R8</td>
+                        <td>T8</td>
+                    </tr>
+                    <tr class="lv-expert">
+                        <td>专家<br><span class="text-xs text-muted">领域权威</span></td>
+                        <td>10-14年</td>
+                        <td><span class="cell-new">L5</span><span class="cell-old">旧 3-2</span></td>
+                        <td><span class="cell-new">26-28级</span><span class="cell-old">旧 P8</span></td>
+                        <td><span class="cell-new">11级</span><span class="cell-old">旧 T4.1</span></td>
+                        <td>17级</td>
+                        <td>L9</td>
+                        <td>D11</td>
+                        <td>K7</td>
+                        <td>T8</td>
+                        <td>T7</td>
+                        <td>17级</td>
+                        <td>P5</td>
+                        <td>D9</td>
+                        <td>R9</td>
+                        <td>T9</td>
+                    </tr>
+                    <tr class="lv-dir">
+                        <td>高级专家<br><span class="text-xs text-muted">总监级</span></td>
+                        <td>14年+</td>
+                        <td><span class="cell-new">L6</span><span class="cell-old">旧 4-1</span></td>
+                        <td><span class="cell-new">组织任命</span><span class="cell-old">旧 P9</span></td>
+                        <td><span class="cell-new">12级</span><span class="cell-old">旧 T4.2</span></td>
+                        <td>18级</td>
+                        <td>L10</td>
+                        <td>D12</td>
+                        <td>K8</td>
+                        <td>T9</td>
+                        <td>T8</td>
+                        <td>18级</td>
+                        <td>P6</td>
+                        <td>D10</td>
+                        <td>R10</td>
+                        <td>T10</td>
+                    </tr>
+                    <tr class="lv-dir">
+                        <td>Fellow/VP<br><span class="text-xs text-muted">高管级</span></td>
+                        <td>15年+</td>
+                        <td><span class="cell-new">L7-L10</span><span class="cell-old">旧 4-2~5-2</span></td>
+                        <td><span class="cell-new">组织任命</span><span class="cell-old">旧 P10-P11</span></td>
+                        <td><span class="cell-new">13-17级</span><span class="cell-old">旧 T4.3+</span></td>
+                        <td>19-22级</td>
+                        <td>L11+</td>
+                        <td class="cell-na">—</td>
+                        <td>K9+</td>
+                        <td>T10+</td>
+                        <td>T9-T10</td>
+                        <td>19级+</td>
+                        <td class="cell-na">—</td>
+                        <td>D11+</td>
+                        <td class="cell-na">—</td>
+                        <td class="cell-na">—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="legend">
+            <span class="legend-item"><span class="legend-dot" style="background:#93C5FD;"></span>初级 L1</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#86EFAC;"></span>中级 L2</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#FDE047;"></span>高级 L3</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#FCA5A5;"></span>资深 L4</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#C4B5FD;"></span>专家 L5</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#F9A8D4;"></span>总监/VP L6+</span>
+            <span class="legend-item"><span class="reform-badge">改</span> 近年有职级改革</span>
+        </div>
+    </div>
+
+    <!-- TAB: T1 详细职级 -->
+    <div class="tab-content" id="tab-t1">
+        <div class="match-grid">
+            <!-- 字节跳动 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t1">T1</span> 字节跳动 职级详解</h3>
+                <div class="note-box" style="margin-bottom:12px;">2025年改革：5级10档 → 10级体系（L1-L10），合并1-1/1-2为L1，新增L10</div>
+                <table class="match-table">
+                    <thead><tr><th>新职级</th><th>旧职级</th><th>头衔</th><th>典型年限</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>L1</strong></td><td>1-1 / 1-2</td><td>初级工程师</td><td>0-2年（校招）</td></tr>
+                        <tr><td><strong>L2</strong></td><td>2-1</td><td>中级工程师</td><td>2-4年</td></tr>
+                        <tr><td><strong>L3</strong></td><td>2-2</td><td>高级工程师</td><td>4-7年</td></tr>
+                        <tr><td><strong>L4</strong></td><td>3-1</td><td>资深工程师</td><td>7-10年</td></tr>
+                        <tr><td><strong>L5</strong></td><td>3-2</td><td>技术专家</td><td>10-14年</td></tr>
+                        <tr><td><strong>L6</strong></td><td>4-1</td><td>高级技术专家</td><td>14年+</td></tr>
+                        <tr><td><strong>L7</strong></td><td>4-2</td><td>Fellow</td><td>—</td></tr>
+                        <tr><td><strong>L8</strong></td><td>5-1</td><td>Senior Fellow</td><td>—</td></tr>
+                        <tr><td><strong>L9</strong></td><td>5-2</td><td>Distinguished Fellow</td><td>—</td></tr>
+                        <tr><td><strong>L10</strong></td><td>新增</td><td>Top Fellow</td><td>对标阿里P10+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 阿里巴巴 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t1">T1</span> 阿里巴巴 职级详解</h3>
+                <div class="note-box" style="margin-bottom:12px;">2024年改革：取消P序列 → 14-28级「小宽带」，每3级≈1个旧P级；P9+走组织任命，内部系统隐藏职级显示</div>
+                <table class="match-table">
+                    <thead><tr><th>新职级</th><th>旧职级</th><th>头衔</th><th>典型年限</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>14-16级</strong></td><td>P4</td><td>初级工程师</td><td>0-1年（校招本科）</td></tr>
+                        <tr><td><strong>17-19级</strong></td><td>P5</td><td>工程师</td><td>1-3年（校招硕士）</td></tr>
+                        <tr><td><strong>20-22级</strong></td><td>P6</td><td>高级工程师</td><td>3-5年（中坚力量）</td></tr>
+                        <tr><td><strong>23-25级</strong></td><td>P7</td><td>技术专家</td><td>5-8年（开始配股）</td></tr>
+                        <tr><td><strong>26-28级</strong></td><td>P8</td><td>高级专家</td><td>8-12年</td></tr>
+                        <tr><td><strong>组织任命</strong></td><td>P9</td><td>资深专家/总监</td><td>12-15年</td></tr>
+                        <tr><td><strong>组织任命</strong></td><td>P10</td><td>研究员/高级总监</td><td>15年+</td></tr>
+                        <tr><td><strong>组织任命</strong></td><td>P11</td><td>高级研究员/VP</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 腾讯 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t1">T1</span> 腾讯 职级详解</h3>
+                <div class="note-box" style="margin-bottom:12px;">2019年改革：旧「T1-T6」体系 → 新14级体系（4-17级），取消子等级（如T3.1/T3.2/T3.3），拉通所有职族</div>
+                <table class="match-table">
+                    <thead><tr><th>新职级</th><th>旧T序列</th><th>头衔</th><th>典型年限</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>5-6级</strong></td><td>T2.1-T2.2</td><td>初级工程师</td><td>0-1年</td></tr>
+                        <tr><td><strong>7级</strong></td><td>T2.3</td><td>工程师（校招硕士常见）</td><td>0-2年</td></tr>
+                        <tr><td><strong>8级</strong></td><td>T3.1</td><td>高级工程师</td><td>2-4年</td></tr>
+                        <tr><td><strong>9级</strong></td><td>T3.2</td><td>资深工程师</td><td>4-7年</td></tr>
+                        <tr><td><strong>10级</strong></td><td>T3.3</td><td>专家工程师</td><td>7-10年</td></tr>
+                        <tr><td><strong>11级</strong></td><td>T4.1</td><td>高级专家</td><td>10-12年</td></tr>
+                        <tr><td><strong>12级</strong></td><td>T4.2</td><td>资深专家</td><td>12-15年</td></tr>
+                        <tr><td><strong>13级</strong></td><td>T4.3</td><td>杰出专家</td><td>15年+</td></tr>
+                        <tr><td><strong>14-17级</strong></td><td>T5+</td><td>科学家/Fellow</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB: T2 详细职级 -->
+    <div class="tab-content" id="tab-t2">
+        <div class="match-grid">
+            <!-- 华为 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 华为 职级详解</h3>
+                <div class="note-box" style="margin-bottom:12px;">华为采用数字级别体系，与任职资格（专业任职/管理任职）挂钩。级别越高薪资带宽越大。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>13级</strong></td><td>初级工程师</td><td>0年（校招本科）</td><td>本科入职起点</td></tr>
+                        <tr><td><strong>14级</strong></td><td>工程师</td><td>1-3年（校招硕士）</td><td>硕士入职起点</td></tr>
+                        <tr><td><strong>15级</strong></td><td>高级工程师</td><td>3-5年</td><td>独立承担模块</td></tr>
+                        <tr><td><strong>16级</strong></td><td>主任工程师</td><td>5-8年</td><td>子系统负责人</td></tr>
+                        <tr><td><strong>17级</strong></td><td>技术专家</td><td>8-12年</td><td>系统架构师</td></tr>
+                        <tr><td><strong>18级</strong></td><td>高级专家</td><td>12-15年</td><td>领域技术Leader</td></tr>
+                        <tr><td><strong>19级</strong></td><td>资深专家/总监</td><td>15年+</td><td>产品线技术负责人</td></tr>
+                        <tr><td><strong>20-22级</strong></td><td>Fellow/VP</td><td>—</td><td>公司级技术决策</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 美团 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 美团 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">P/M序列合并为统一L职级。规律：美团L级 ≈ 阿里P级 - 1（如美团L8 ≈ 阿里P7）</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>L5</strong></td><td>初级工程师（校招）</td><td>0年</td><td>≈P4</td></tr>
+                        <tr><td><strong>L6</strong></td><td>工程师（社招起点）</td><td>1-3年</td><td>≈P5</td></tr>
+                        <tr><td><strong>L7</strong></td><td>高级工程师</td><td>3-5年</td><td>≈P6</td></tr>
+                        <tr><td><strong>L8</strong></td><td>资深工程师</td><td>5-8年</td><td>≈P7</td></tr>
+                        <tr><td><strong>L9</strong></td><td>技术专家</td><td>8-12年</td><td>≈P8</td></tr>
+                        <tr><td><strong>L10</strong></td><td>高级专家/总监</td><td>12年+</td><td>≈P9</td></tr>
+                        <tr><td><strong>L11+</strong></td><td>高级总监/VP</td><td>—</td><td>≈P10+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 京东 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 京东 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">T序列（技术/产品）、M序列（管理）、P序列（项目管理）。京东T7 ≈ 阿里P7。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>T3-T4</strong></td><td>初级/中级工程师</td><td>0-2年</td><td>≈P4-P5</td></tr>
+                        <tr><td><strong>T5</strong></td><td>高级工程师</td><td>2-5年</td><td>≈P5-P6</td></tr>
+                        <tr><td><strong>T6</strong></td><td>资深工程师</td><td>5-8年</td><td>≈P6-P7</td></tr>
+                        <tr><td><strong>T7</strong></td><td>技术专家</td><td>8-12年</td><td>≈P7-P8</td></tr>
+                        <tr><td><strong>T8</strong></td><td>高级专家</td><td>12年+</td><td>≈P8-P9</td></tr>
+                        <tr><td><strong>T9+</strong></td><td>首席专家/Fellow</td><td>—</td><td>≈P9+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 百度 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 百度 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">技术序列T3-T10，管理序列M1-M5。百度T5 ≈ 阿里P6。AI方向人才定级偏高。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>T3</strong></td><td>初级工程师（校招）</td><td>0-1年</td><td>≈P4</td></tr>
+                        <tr><td><strong>T4</strong></td><td>工程师</td><td>1-3年</td><td>≈P5</td></tr>
+                        <tr><td><strong>T5</strong></td><td>高级工程师</td><td>3-5年</td><td>≈P6</td></tr>
+                        <tr><td><strong>T6</strong></td><td>资深工程师</td><td>5-8年</td><td>≈P7</td></tr>
+                        <tr><td><strong>T7</strong></td><td>技术专家</td><td>8-12年</td><td>≈P8</td></tr>
+                        <tr><td><strong>T8</strong></td><td>高级专家/副总监</td><td>12年+</td><td>≈P9</td></tr>
+                        <tr><td><strong>T9-T10</strong></td><td>总监/Fellow</td><td>—</td><td>≈P10+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 拼多多 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 拼多多 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">扁平管理文化，职级体系相对不透明。薪资极具竞争力，工作强度大。以下为业内通行理解。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>D7</strong></td><td>初级（校招）</td><td>0-2年</td><td>≈P4-P5</td></tr>
+                        <tr><td><strong>D8</strong></td><td>中级</td><td>2-4年</td><td>≈P5-P6</td></tr>
+                        <tr><td><strong>D9</strong></td><td>高级</td><td>4-7年</td><td>≈P6-P7</td></tr>
+                        <tr><td><strong>D10</strong></td><td>资深</td><td>7-10年</td><td>≈P7-P8</td></tr>
+                        <tr><td><strong>D11</strong></td><td>专家</td><td>10年+</td><td>≈P8</td></tr>
+                        <tr><td><strong>D12+</strong></td><td>高级专家/总监</td><td>—</td><td>≈P9+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 快手 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 快手 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">早期使用K序列（K3a/K3b等），后调整为M/K混合体系。以下为通行对照。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>K3</strong></td><td>初级工程师</td><td>0-2年</td><td>≈P4-P5</td></tr>
+                        <tr><td><strong>K4</strong></td><td>中级工程师</td><td>2-4年</td><td>≈P5-P6</td></tr>
+                        <tr><td><strong>K5</strong></td><td>高级工程师</td><td>4-7年</td><td>≈P6-P7</td></tr>
+                        <tr><td><strong>K6</strong></td><td>资深工程师</td><td>7-10年</td><td>≈P7</td></tr>
+                        <tr><td><strong>K7</strong></td><td>技术专家</td><td>10年+</td><td>≈P8</td></tr>
+                        <tr><td><strong>K8+</strong></td><td>高级专家/总监</td><td>—</td><td>≈P9+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 小米 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 小米 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">数字级别体系（13-22级），与华为类似。小米15级 ≈ 阿里P6。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>13级</strong></td><td>初级工程师</td><td>0年</td><td>≈P4</td></tr>
+                        <tr><td><strong>14级</strong></td><td>工程师</td><td>1-3年</td><td>≈P5</td></tr>
+                        <tr><td><strong>15级</strong></td><td>高级工程师</td><td>3-5年</td><td>≈P6</td></tr>
+                        <tr><td><strong>16级</strong></td><td>资深工程师</td><td>5-8年</td><td>≈P7</td></tr>
+                        <tr><td><strong>17级</strong></td><td>技术专家</td><td>8-12年</td><td>≈P8</td></tr>
+                        <tr><td><strong>18级</strong></td><td>高级专家</td><td>12年+</td><td>≈P9</td></tr>
+                        <tr><td><strong>19级+</strong></td><td>总监/VP</td><td>—</td><td>≈P10+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 网易 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 网易 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">P序列（技术）为主。网易P3 ≈ 阿里P6。游戏方向定级可能偏高。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>P1</strong></td><td>初级工程师</td><td>0-2年</td><td>≈P4-P5</td></tr>
+                        <tr><td><strong>P2</strong></td><td>中级工程师</td><td>2-4年</td><td>≈P5-P6</td></tr>
+                        <tr><td><strong>P3</strong></td><td>高级工程师</td><td>4-7年</td><td>≈P6-P7</td></tr>
+                        <tr><td><strong>P4</strong></td><td>资深工程师</td><td>7-10年</td><td>≈P7-P8</td></tr>
+                        <tr><td><strong>P5</strong></td><td>技术专家</td><td>10年+</td><td>≈P8-P9</td></tr>
+                        <tr><td><strong>P6+</strong></td><td>高级专家/Fellow</td><td>—</td><td>≈P9+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 小红书 -->
+            <div class="match-card">
+                <h3><span class="badge badge-t2">T2</span> 小红书 职级详解</h3>
+                <div class="info-box" style="margin-bottom:12px;">原使用R级体系，后取消R级简化管理层。薪资与工作难度和绩效直接挂钩，偏扁平化。</div>
+                <table class="match-table">
+                    <thead><tr><th>职级</th><th>头衔</th><th>典型年限</th><th>对标阿里</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>R5</strong></td><td>初级</td><td>0-2年</td><td>≈P4-P5</td></tr>
+                        <tr><td><strong>R6</strong></td><td>中级</td><td>2-4年</td><td>≈P5-P6</td></tr>
+                        <tr><td><strong>R7</strong></td><td>高级</td><td>4-7年</td><td>≈P6-P7</td></tr>
+                        <tr><td><strong>R8</strong></td><td>资深</td><td>7-10年</td><td>≈P7</td></tr>
+                        <tr><td><strong>R9</strong></td><td>专家</td><td>10年+</td><td>≈P8</td></tr>
+                        <tr><td><strong>R10+</strong></td><td>高级专家</td><td>—</td><td>≈P9+</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================== SECTION 4: EXPERIENCE-LEVEL MATCH ======================== -->
+<div class="section" id="match">
+    <div class="section-title">
+        <span class="icon" style="background:#DCFCE7;color:#16A34A;">&#9201;</span>
+        职级与年限匹配评估
+    </div>
+    <div class="section-desc">评估候选人的晋升速度：同样年限下，职级越高说明晋升越快、能力越强。这是简历筛选中的重要信号。</div>
+
+    <div class="speed-bar">
+        <div class="speed-seg speed-fast" style="flex:2;"></div>
+        <div class="speed-seg speed-normal" style="flex:6;"></div>
+        <div class="speed-seg speed-slow" style="flex:2;"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:24px;">
+        <span>快速晋升（前20%）</span>
+        <span>正常晋升（中60%）</span>
+        <span>偏慢晋升（后20%）</span>
+    </div>
+
+    <!-- 以阿里P序列为基准的年限匹配 -->
+    <div class="table-wrap" style="margin-bottom:24px;">
+        <table class="level-table" style="min-width:900px;">
+            <thead>
+                <tr>
+                    <th style="min-width:90px;">工作年限</th>
+                    <th>快速晋升<br><span class="tag-fast">前20%</span></th>
+                    <th>正常晋升<br><span class="tag-normal">中60%</span></th>
+                    <th>偏慢晋升<br><span class="tag-slow">后20%</span></th>
+                    <th>对应字节(新)</th>
+                    <th>对应阿里(旧)</th>
+                    <th>对应腾讯(新)</th>
+                    <th>对应华为</th>
+                    <th>对应美团</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">应届 0年</td>
+                    <td>—</td>
+                    <td>初级</td>
+                    <td>—</td>
+                    <td>L1</td>
+                    <td>P4-P5</td>
+                    <td>6-7级</td>
+                    <td>13-14级</td>
+                    <td>L5</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">1-3年</td>
+                    <td><span class="tag-fast">中级偏上</span></td>
+                    <td>初级→中级</td>
+                    <td><span class="tag-slow">仍在初级</span></td>
+                    <td>L1→L2</td>
+                    <td>P5→P6</td>
+                    <td>7→8级</td>
+                    <td>14→15级</td>
+                    <td>L6</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">3-5年</td>
+                    <td><span class="tag-fast">高级</span></td>
+                    <td>中级→高级</td>
+                    <td><span class="tag-slow">中级</span></td>
+                    <td>L2→L3</td>
+                    <td>P6</td>
+                    <td>8→9级</td>
+                    <td>15级</td>
+                    <td>L7</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">5-8年</td>
+                    <td><span class="tag-fast">资深</span></td>
+                    <td>高级→资深</td>
+                    <td><span class="tag-slow">高级</span></td>
+                    <td>L3→L4</td>
+                    <td>P7</td>
+                    <td>9→10级</td>
+                    <td>16级</td>
+                    <td>L8</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">8-12年</td>
+                    <td><span class="tag-fast">专家</span></td>
+                    <td>资深→专家</td>
+                    <td><span class="tag-slow">资深</span></td>
+                    <td>L4→L5</td>
+                    <td>P8</td>
+                    <td>10→11级</td>
+                    <td>17级</td>
+                    <td>L9</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">12-15年</td>
+                    <td><span class="tag-fast">高级专家/总监</span></td>
+                    <td>专家</td>
+                    <td><span class="tag-slow">资深→专家</span></td>
+                    <td>L5→L6</td>
+                    <td>P9</td>
+                    <td>11→12级</td>
+                    <td>18级</td>
+                    <td>L10</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:700;">15年+</td>
+                    <td><span class="tag-fast">VP/Fellow</span></td>
+                    <td>高级专家/总监</td>
+                    <td><span class="tag-slow">专家</span></td>
+                    <td>L6+</td>
+                    <td>P10+</td>
+                    <td>12+级</td>
+                    <td>19+级</td>
+                    <td>L11+</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="match-grid">
+        <div class="match-card">
+            <h3>晋升速度评估要点</h3>
+            <div style="font-size:13px;">
+                <p style="margin-bottom:8px;"><span class="tag-fast">快速晋升信号</span></p>
+                <ul style="padding-left:20px;margin-bottom:12px;color:var(--text2);">
+                    <li>3年内达到高级（如字节L3/阿里P6/腾讯9级）</li>
+                    <li>5年内达到资深（如字节L4/阿里P7/腾讯10级）</li>
+                    <li>T1公司连续晋升无跳级</li>
+                    <li>从T2/T3跳到T1公司且不降级</li>
+                </ul>
+                <p style="margin-bottom:8px;"><span class="tag-slow">需要关注的信号</span></p>
+                <ul style="padding-left:20px;color:var(--text2);">
+                    <li>5年+仍在中级（如字节L2/阿里P5/腾讯7级）</li>
+                    <li>频繁跳槽但职级不升</li>
+                    <li>从T1降到T3/T4公司但级别只升一级</li>
+                    <li>10年+仍未达到资深/专家级</li>
+                </ul>
+            </div>
+        </div>
+        <div class="match-card">
+            <h3>跨公司跳槽职级换算</h3>
+            <div style="font-size:13px;">
+                <p style="margin-bottom:8px;color:var(--text2);">跳槽时职级变动的常见规律：</p>
+                <div class="score-row"><span>T1 → T1（平跳）</span><span class="score-pts" style="color:#16A34A;">平级或+1</span></div>
+                <div class="score-row"><span>T1 → T2</span><span class="score-pts" style="color:#16A34A;">通常+1级</span></div>
+                <div class="score-row"><span>T2 → T1</span><span class="score-pts" style="color:#DC2626;">通常平级或-1级</span></div>
+                <div class="score-row"><span>T2 → T2（平跳）</span><span class="score-pts" style="color:#16A34A;">平级或+1</span></div>
+                <div class="score-row"><span>T3 → T1</span><span class="score-pts" style="color:#DC2626;">通常-1级</span></div>
+                <div class="score-row"><span>T1 → T3</span><span class="score-pts" style="color:#16A34A;">通常+1~2级</span></div>
+                <p style="margin-top:12px;font-size:12px;color:var(--text3);">注意：以上为通用规律，实际取决于面试表现和业务需求</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================== FOOTER ======================== -->
+<div style="max-width:1400px;margin:0 auto;padding:32px 24px 48px;border-top:1px solid var(--border);">
+    <div style="font-size:12px;color:var(--text3);text-align:center;">
+        <p>数据来源：公开信息整理，仅供参考，实际职级可能因部门、业务线、时间点不同而有所差异</p>
+        <p style="margin-top:4px;">最后更新：2026年4月 &nbsp;|&nbsp; 建议定期核实各公司最新职级政策</p>
+    </div>
+</div>
+
+<script>
+// Smooth scroll
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    event.target.classList.add('active');
+}
+
+// Toggle business line
+function toggleBiz(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.arrow');
+    body.classList.toggle('open');
+    arrow.classList.toggle('open');
+}
+
+// Switch tabs
+function switchTab(btn, tabId) {
+    btn.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const parent = btn.closest('.section') || btn.closest('.tab-content')?.parentElement;
+    document.querySelectorAll('.tab-content').forEach(tc => {
+        if (tc.parentElement === parent || tc.closest('.section') === btn.closest('.section')) {
+            tc.classList.remove('active');
+        }
+    });
+    document.getElementById(tabId).classList.add('active');
+}
+
+// Scroll spy for nav
+const sections = ['tiers', 'business', 'levels', 'match'];
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+    let current = sections[0];
+    for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 100) current = id;
+    }
+    navLinks.forEach((link, i) => {
+        link.classList.toggle('active', sections[i] === current);
+    });
+});
+
+// Auto open first business line
+document.querySelector('.biz-header')?.click();
+</script>
+
+</body>
+</html>
